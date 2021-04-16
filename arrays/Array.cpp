@@ -1,6 +1,6 @@
 #include "Array.h"
 
-Array::Array() : Array(DEFAULT_INITIAL_SIZE)  {
+Array::Array() : Array(DEFAULT_INITIAL_SIZE) {
 }
 
 Array::Array(size_t initialSize) {
@@ -53,8 +53,7 @@ int &Array::operator[](size_t index) {
     return data[index];
 }
 
-void Array::clear()
-{
+void Array::clear() {
     length = 0;
 }
 
@@ -74,9 +73,9 @@ void Array::ensureCapacity(size_t expectedCapacity) {
     }
 
     if (data == nullptr) {
-        data = (int *) calloc(expectedCapacity, sizeof (int));
+        data = (int *) calloc(expectedCapacity, sizeof(int));
     } else {
-        data = (int *) realloc(data, expectedCapacity * sizeof (int));
+        data = (int *) realloc(data, expectedCapacity * sizeof(int));
     }
     capacity = expectedCapacity;
 }
@@ -84,4 +83,13 @@ void Array::ensureCapacity(size_t expectedCapacity) {
 void Array::print() const {
     cout << "Array of length " << length << " (capacity: " << capacity << ")" << endl;
     printData();
+}
+
+long long Array::indexOf(int element) const {
+    for (size_t i = 0; i < length; ++i) {
+        if (data[i] == element) {
+            return (long long) i;
+        }
+    }
+    return -1;
 }

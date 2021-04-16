@@ -12,10 +12,14 @@ public:
     ~Array() override;
 
     void add(int element) override;
+
     void addAll(const Collection &other) override;
+
     void addAll(const int *nativeArray, size_t arraySize) override;
 
     int get(size_t index) const override;
+
+    long long indexOf(int element) const override;
 
     size_t getLength() const override;
 
