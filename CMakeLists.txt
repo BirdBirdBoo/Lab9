@@ -33,13 +33,13 @@ set(PROJECT_SOURCES
         mainwindow.cpp
         mainwindow.h
         mainwindow.ui
-        arrays/Collection.cpp
-        arrays/Collection.h
-        arrays/Array.cpp
-        arrays/Array.h
-        arrays/Set.cpp
-        arrays/Set.h
-        arrays/Appendable.h arrays/Indexable.h)
+        collections/Collection.cpp
+        collections/Collection.h
+        collections/Array.cpp
+        collections/Array.h
+        collections/Set.cpp
+        collections/Set.h
+        collections/Appendable.h collections/Indexable.h)
 
 add_executable(Lab9
         ${PROJECT_SOURCES}
