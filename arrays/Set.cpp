@@ -1,7 +1,3 @@
-//
-// Created by rudko on 15.04.2021.
-//
-
 #include "Set.h"
 
 Set::Set() : Set(DEFAULT_INITIAL_SIZE) {

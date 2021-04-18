@@ -2,8 +2,9 @@
 #define LAB9_SET_H
 
 #include "Collection.h"
+#include "Appendable.h"
 
-class Set : public Collection {
+class Set : public Collection, Appendable {
 public:
     Set();
 

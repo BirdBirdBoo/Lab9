@@ -2,8 +2,9 @@
 #define LAB9_ARRAY_H
 
 #include "Collection.h"
+#include "Appendable.h"
 
-class Array : public Collection {
+class Array : public Collection, Appendable {
 public:
     Array();
 

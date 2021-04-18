@@ -39,7 +39,7 @@ set(PROJECT_SOURCES
         arrays/Array.h
         arrays/Set.cpp
         arrays/Set.h
-        )
+        arrays/Appendable.h arrays/Indexable.h)
 
 add_executable(Lab9
         ${PROJECT_SOURCES}
