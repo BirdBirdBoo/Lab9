@@ -2,15 +2,12 @@
 #include "./ui_mainwindow.h"
 
 MainWindow::MainWindow(QWidget *parent)
-    : QMainWindow(parent)
-    , ui(new Ui::MainWindow)
-{
+        : QMainWindow(parent), ui(new Ui::MainWindow) {
     ui->setupUi(this);
     setUpInputs();
 }
 
-MainWindow::~MainWindow()
-{
+MainWindow::~MainWindow() {
     for (Collection *c : collections) {
         free(c);
     }
@@ -19,8 +16,7 @@ MainWindow::~MainWindow()
     delete ui;
 }
 
-void MainWindow::setUpInputs()
-{
+void MainWindow::setUpInputs() {
     ui->elementLineEdit->setValidator(new QIntValidator(INT32_MIN, INT32_MAX, this));
     ui->indexLineEdit->setValidator(new QIntValidator(0, INT32_MAX, this));
 
@@ -28,22 +24,19 @@ void MainWindow::setUpInputs()
     setAddElementEnabled(false);
 }
 
-void MainWindow::on_addArrayButton_clicked()
-{
-    Array *newArray = new Array();
+void MainWindow::on_addArrayButton_clicked() {
+    auto *newArray = new Array();
     collections.push_back(newArray);
     handleCollectionAdded(*newArray);
 }
 
-void MainWindow::on_addSetButton_clicked()
-{
-    Set *newSet = new Set();
+void MainWindow::on_addSetButton_clicked() {
+    auto *newSet = new Set();
     collections.push_back(newSet);
     handleCollectionAdded(*newSet);
 }
 
-void MainWindow::on_collectionList_currentRowChanged(int currentRow)
-{
+void MainWindow::on_collectionList_currentRowChanged(int currentRow) {
     if (currentRow == -1) {
         setAddElementEnabled(false);
         setIndexEditorEnabled(false);
@@ -58,11 +51,10 @@ void MainWindow::on_collectionList_currentRowChanged(int currentRow)
     setIndexEditorEnabled(isArray);
 }
 
-void MainWindow::on_addButton_clicked()
-{
+void MainWindow::on_addButton_clicked() {
     int row = ui->collectionList->currentRow();
     if (ui->elementLineEdit->hasAcceptableInput() && row != -1) {
-        Appendable *appendable = dynamic_cast<Appendable *>(collections[row]);
+        auto *appendable = dynamic_cast<Appendable *>(collections[row]);
 
         if (appendable != nullptr) {
             int element = ui->elementLineEdit->text().toInt();
@@ -73,11 +65,10 @@ void MainWindow::on_addButton_clicked()
     }
 }
 
-void MainWindow::on_setButton_clicked()
-{
+void MainWindow::on_setButton_clicked() {
     int row = ui->collectionList->currentRow();
     if (ui->elementLineEdit->hasAcceptableInput() && ui->indexLineEdit->hasAcceptableInput() && row != -1) {
-        Array *array = dynamic_cast<Array *>(collections[row]);
+        auto *array = dynamic_cast<Array *>(collections[row]);
 
         if (array != nullptr) {
             int element = ui->elementLineEdit->text().toInt();
@@ -96,25 +87,21 @@ void MainWindow::on_setButton_clicked()
     }
 }
 
-void MainWindow::handleCollectionAdded(Collection &collection)
-{
+void MainWindow::handleCollectionAdded(Collection &collection) {
     ui->collectionList->addItem(QString::fromStdString(collection.toString()));
 }
 
-void MainWindow::handleCollectionChanged(int index)
-{
+void MainWindow::handleCollectionChanged(int index) {
     ui->collectionList->item(index)->setText(QString::fromStdString(collections[index]->toString()));
 }
 
-void MainWindow::setAddElementEnabled(bool enabled)
-{
+void MainWindow::setAddElementEnabled(bool enabled) {
     ui->elementLabel->setEnabled(enabled);
     ui->elementLineEdit->setEnabled(enabled);
     ui->addButton->setEnabled(enabled);
 }
 
-void MainWindow::setIndexEditorEnabled(bool enabled)
-{
+void MainWindow::setIndexEditorEnabled(bool enabled) {
     ui->indexLabel->setEnabled(enabled);
     ui->indexLineEdit->setEnabled(enabled);
     ui->setButton->setEnabled(enabled);
