@@ -3,7 +3,9 @@
 
 #include <QMainWindow>
 #include <vector>
-#include <arrays/Collection.h>
+#include <collections/Collection.h>
+#include <collections/Array.h>
+#include <collections/Set.h>
 
 QT_BEGIN_NAMESPACE
 namespace Ui { class MainWindow; }
@@ -17,9 +19,26 @@ public:
     MainWindow(QWidget *parent = nullptr);
     ~MainWindow();
 
+private slots:
+    void on_addArrayButton_clicked();
+
+    void on_addSetButton_clicked();
+
+    void on_collectionList_currentRowChanged(int currentRow);
+
 private:
     Ui::MainWindow *ui;
 
     std::vector<Collection *> collections;
+
+    void handleCollectionAdded(Collection &collection);
+
+    void handleCollectionChanged(int index);
+
+    void setIndexEditorEnabled(bool enabled);
+
+    void setAddElementEnabled(bool enabled);
+
+    void setUpInputs();
 };
 #endif // MAINWINDOW_H
