@@ -1,18 +1,22 @@
 #include "Collection.h"
 
-void Collection::print() const {
-    cout << "Collection of size " << getLength() << endl;
-    printData();
+std::string Collection::toString() const {
+    std::stringstream builder;
+    builder << "Collection of size" << getLength() << ": " << dataString();
+    return builder.str();
 }
 
-void Collection::printData() const {
-    cout << "Data: [";
+std::string Collection::dataString(char leftBracket, char rightBracket) const {
+    std::stringstream builder;
+    builder << "Data: " << leftBracket;
 
     if (getLength() > 0) {
         for (size_t i = 0; i < getLength() - 1; ++i) {
-            cout << (*this)[i] << ", ";
+            builder << (*this)[i] << ", ";
         }
-        cout << (*this)[getLength() - 1];
+        builder << (*this)[getLength() - 1];
     }
-    cout << "]" << endl;
+    builder << rightBracket;
+
+    return builder.str();
 }

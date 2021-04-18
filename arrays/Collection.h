@@ -2,14 +2,13 @@
 #define LAB9_COLLECTION_H
 
 #include <cstddef>
-#include <iostream>
+#include <string>
+#include <sstream>
 #include "Indexable.h"
 
 using std::size_t;
-using std::cout;
-using std::endl;
 
-class Collection: Indexable {
+class Collection: public Indexable {
 
 public:
     virtual ~Collection() = default;
@@ -20,10 +19,10 @@ public:
 
     virtual size_t getLength() const = 0;
 
-    virtual void print() const;
+    virtual std::string toString() const;
 
 protected:
-    virtual void printData() const;
+    virtual std::string dataString(char leftBracket = '[', char rightBracket = ']') const;
 };
 
 

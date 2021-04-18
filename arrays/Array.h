@@ -4,7 +4,7 @@
 #include "Collection.h"
 #include "Appendable.h"
 
-class Array : public Collection, Appendable {
+class Array : public Collection, public Appendable {
 public:
     Array();
 
@@ -28,7 +28,7 @@ public:
 
     void clear() override;
 
-    void print() const override;
+    std::string toString() const override;
 
 private:
     const static size_t DEFAULT_INITIAL_SIZE = 4;

@@ -77,23 +77,6 @@ void Set::clear() {
     length = 0;
 }
 
-void Set::print() const {
-    cout << "Set of size " << getLength() << endl;
-    printData();
-}
-
-void Set::printData() const {
-    cout << "Data: {";
-
-    if (length > 0) {
-        for (size_t i = 0; i < length - 1; ++i) {
-            cout << data[i] << ", ";
-        }
-        cout << data[length - 1];
-    }
-    cout << "}" << endl;
-}
-
 bool Set::elementExists(int element) const {
     return indexOf(element) != -1;
 }
@@ -160,3 +143,9 @@ void Set::ensureCapacity(size_t expectedCapacity) {
     capacity = expectedCapacity;
 }
 
+std::string Set::toString() const
+{
+    std::stringstream out;
+    out << "Set of size " << length << ": " << dataString('{', '}');
+    return out.str();
+}

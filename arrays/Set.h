@@ -4,7 +4,7 @@
 #include "Collection.h"
 #include "Appendable.h"
 
-class Set : public Collection, Appendable {
+class Set : public Collection, public Appendable {
 public:
     Set();
 
@@ -26,10 +26,7 @@ public:
 
     void clear() override;
 
-    void print() const override;
-
-protected:
-    void printData() const override;
+    std::string toString() const override;
 
 private:
     const static size_t DEFAULT_INITIAL_SIZE = 4;

@@ -57,6 +57,7 @@ void Array::clear() {
     length = 0;
 }
 
+
 size_t Array::getLength() const {
     return length;
 }
@@ -80,9 +81,11 @@ void Array::ensureCapacity(size_t expectedCapacity) {
     capacity = expectedCapacity;
 }
 
-void Array::print() const {
-    cout << "Array of length " << length << " (capacity: " << capacity << ")" << endl;
-    printData();
+std::string Array::toString() const
+{
+    std::stringstream out;
+    out << "Array of length " << length << " : " << dataString();
+    return out.str();
 }
 
 long long Array::indexOf(int element) const {
