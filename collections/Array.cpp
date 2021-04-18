@@ -53,6 +53,12 @@ int &Array::operator[](size_t index) {
     return data[index];
 }
 
+void Array::set(size_t index, int element)
+{
+    checkBounds(index);
+    data[index] = element;
+}
+
 void Array::clear() {
     length = 0;
 }

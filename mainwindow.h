@@ -2,6 +2,7 @@
 #define MAINWINDOW_H
 
 #include <QMainWindow>
+#include <QMessageBox>
 #include <vector>
 #include <collections/Collection.h>
 #include <collections/Array.h>
@@ -25,6 +26,10 @@ private slots:
     void on_addSetButton_clicked();
 
     void on_collectionList_currentRowChanged(int currentRow);
+
+    void on_addButton_clicked();
+
+    void on_setButton_clicked();
 
 private:
     Ui::MainWindow *ui;

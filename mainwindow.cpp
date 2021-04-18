@@ -58,6 +58,44 @@ void MainWindow::on_collectionList_currentRowChanged(int currentRow)
     setIndexEditorEnabled(isArray);
 }
 
+void MainWindow::on_addButton_clicked()
+{
+    int row = ui->collectionList->currentRow();
+    if (ui->elementLineEdit->hasAcceptableInput() && row != -1) {
+        Appendable *appendable = dynamic_cast<Appendable *>(collections[row]);
+
+        if (appendable != nullptr) {
+            int element = ui->elementLineEdit->text().toInt();
+            appendable->add(element);
+
+            handleCollectionChanged(row);
+        }
+    }
+}
+
+void MainWindow::on_setButton_clicked()
+{
+    int row = ui->collectionList->currentRow();
+    if (ui->elementLineEdit->hasAcceptableInput() && ui->indexLineEdit->hasAcceptableInput() && row != -1) {
+        Array *array = dynamic_cast<Array *>(collections[row]);
+
+        if (array != nullptr) {
+            int element = ui->elementLineEdit->text().toInt();
+            size_t index = ui->indexLineEdit->text().toULongLong();
+
+            if (index >= array->getLength()) {
+                QMessageBox::critical(this,
+                                      "Error",
+                                      "Index is out of bounds!");
+                return;
+            }
+            array->set(index, element);
+
+            handleCollectionChanged(row);
+        }
+    }
+}
+
 void MainWindow::handleCollectionAdded(Collection &collection)
 {
     ui->collectionList->addItem(QString::fromStdString(collection.toString()));

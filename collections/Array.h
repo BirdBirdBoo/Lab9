@@ -26,6 +26,8 @@ public:
 
     int &operator[](size_t index);
 
+    void set(size_t index, int element);
+
     void clear() override;
 
     std::string toString() const override;

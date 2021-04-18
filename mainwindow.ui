@@ -56,7 +56,11 @@
       <property name="childrenCollapsible">
        <bool>false</bool>
       </property>
-      <widget class="QListWidget" name="collectionList"/>
+      <widget class="QListWidget" name="collectionList">
+       <property name="selectionBehavior">
+        <enum>QAbstractItemView::SelectColumns</enum>
+       </property>
+      </widget>
       <widget class="QWidget" name="formLayoutWidget">
        <layout class="QFormLayout" name="formLayout">
         <property name="fieldGrowthPolicy">
